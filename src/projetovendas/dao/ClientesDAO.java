@@ -64,8 +64,24 @@ public class ClientesDAO {
         
     }
     
-     public void excluirCilente(){
-        
+     public void excluirCilente(Clientes obj){
+        try {
+            //1° passo - criar comamndo sql
+            String sql = " delete from tb_clientes where id=?";
+            
+            //2° passo - conectar o banco de dados e organizar o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+                       
+            //3° passo - executar o comando sql
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null,"Excluido com Sucesso!!");
+            
+        } catch (SQLException e) {
+              JOptionPane.showMessageDialog(null,"Erro ao excluir usuário." + e);
+        }
     }
      
      public List<Clientes> listarCliente(){
