@@ -80,7 +80,7 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtendereco = new javax.swing.JTextField();
         txtnummero = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtcidade = new javax.swing.JTextField();
         txtbairro = new javax.swing.JTextField();
@@ -201,8 +201,8 @@ public class Frmcliente extends javax.swing.JFrame {
         txtnummero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtnummero.setText("Número:");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcodigo.setBackground(new java.awt.Color(255, 255, 255));
+        txtcodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Cidade:");
@@ -261,7 +261,7 @@ public class Frmcliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -330,7 +330,7 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,6 +396,11 @@ public class Frmcliente extends javax.swing.JFrame {
                 "Código", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
+        tabelaclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaclientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaclientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -537,11 +542,30 @@ public class Frmcliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // TODO add your handling code here:
+        // editar
+                // botão salvar
+            Clientes obj = new Clientes();
+            obj.setNome(txtnome.getText());
+            obj.setRg(txtrg.getText());
+            obj.setCpf(txtcpf.getText());
+            obj.setEmail(txtemail.getText());
+            obj.setTelefone(txtfixo.getText());
+            obj.setCelular(txtcelular.getText());
+            obj.setCep(txtcep.getText());
+            obj.setEndereco(txtendereco.getText());
+            obj.setNumero(Integer.parseInt(txtnum.getText()));
+            obj.setComplemento(txtcompl.getText());
+            obj.setBairro(txtbairro.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setEstado(combouf.getSelectedItem().toString());
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+            
+            ClientesDAO dao = new ClientesDAO();
+            dao.alterarCilente(obj);
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_btnexcluirActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
@@ -553,6 +577,27 @@ public class Frmcliente extends javax.swing.JFrame {
         listarTabela();
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void tabelaclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaclientesMouseClicked
+        // ao clicar no item selecionado da aba desejada, ele ira direcionar na primeira aba da dela, ou a que desejar basta trocar o indice
+        jTabbedPane1.setSelectedIndex(0);
+        //esse campo vai carregar os dados do cliente q foi selecionado na primera aba(aba de cadastro de clientes)
+        txtcodigo.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 0).toString());
+        txtnome.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 3).toString());
+        txtemail.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 4).toString());
+        txtfixo.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 5).toString());
+        txtcelular.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 6).toString());
+        txtcep.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 7).toString());
+        txtendereco.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 8).toString());
+        txtnum.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 9).toString());
+        txtcompl.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 10).toString());
+        txtbairro.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 11).toString());
+        txtcidade.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 12).toString());
+        combouf.setSelectedItem(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 13).toString());
+        
+    }//GEN-LAST:event_tabelaclientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -616,13 +661,13 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tabelaclientes;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcelular;
     private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;
+    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtcompl;
     private javax.swing.JFormattedTextField txtcpf;
     private javax.swing.JTextField txtemail;
