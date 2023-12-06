@@ -565,7 +565,12 @@ public class Frmcliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-   
+        // excluir        
+          Clientes obj = new Clientes();
+          obj.setId(Integer.parseInt(txtcodigo.getText()));
+            
+          ClientesDAO dao = new ClientesDAO();
+          dao.excluirCilente(obj);
     }//GEN-LAST:event_btnexcluirActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
