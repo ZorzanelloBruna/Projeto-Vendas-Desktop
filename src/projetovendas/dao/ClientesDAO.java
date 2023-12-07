@@ -251,19 +251,4 @@ public class ClientesDAO {
         }
 
     }
-
-//    //Programacao do keypress
-//    if (evt.getKeyCode () 
-//        == KeyEvent.VK_ENTER) { 
-//         Clientes obj = new Clientes();
-//        ClientesDAO dao = new ClientesDAO();
-//        obj = dao.buscaCep(txtcep.getText());
-//
-//        txtend.setText(obj.getEndereco());
-//        txtbairro.setText(obj.getBairro());
-//        txtcidade.setText(obj.getCidade());
-//        cbuf.setSelectedItem(obj.getUf());
-//        System.out.println(obj.getUf());
-//
-//    }
 }
