@@ -378,6 +378,11 @@ public class Frmcliente extends javax.swing.JFrame {
 
         txtpesquisa.setBackground(new java.awt.Color(255, 255, 255));
         txtpesquisa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaKeyPressed(evt);
+            }
+        });
 
         btnpesquisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnpesquisar.setText("Pesquisar");
@@ -628,6 +633,35 @@ public class Frmcliente extends javax.swing.JFrame {
         combouf.setSelectedItem(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 13).toString());
         
     }//GEN-LAST:event_tabelaclientesMouseClicked
+
+    private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
+        // TODO add your handling code here:
+                String nome = "%" + txtpesquisa.getText() + "%";                
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscarPorNome(nome);
+        
+        DefaultTableModel dados = (DefaultTableModel) tabelaclientes.getModel();
+        dados.setNumRows(0);
+        
+        for (Clientes clientes : lista) {
+             dados.addRow(new Object[]{
+                 clientes.getId(),
+                 clientes.getNome(),
+                 clientes.getRg(),
+                 clientes.getCpf(),
+                 clientes.getEmail(),
+                 clientes.getTelefone(),
+                 clientes.getCelular(),
+                 clientes.getCep(),
+                 clientes.getEndereco(),
+                 clientes.getNumero(),
+                 clientes.getComplemento(),
+                 clientes.getBairro(),
+                 clientes.getCidade(),
+                 clientes.getEstado()
+             });
+        }
+    }//GEN-LAST:event_txtpesquisaKeyPressed
 
     /**
      * @param args the command line arguments
