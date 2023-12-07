@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
 import projetovendas.model.Clientes;
+import projetovendas.model.WebServiceCep;
 
 /**
  *
@@ -183,7 +184,7 @@ public class ClientesDAO {
                 obj.setEstado(rs.getString("estado"));
             }
             return obj;
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Usuário não encontrado" + e);
             return null;
@@ -230,4 +231,39 @@ public class ClientesDAO {
             return null;
         }
     }
+
+    public Clientes buscaCep(String cep) {
+
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+
+        Clientes obj = new Clientes();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setEstado(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            return null;
+        }
+
+    }
+
+//    //Programacao do keypress
+//    if (evt.getKeyCode () 
+//        == KeyEvent.VK_ENTER) { 
+//         Clientes obj = new Clientes();
+//        ClientesDAO dao = new ClientesDAO();
+//        obj = dao.buscaCep(txtcep.getText());
+//
+//        txtend.setText(obj.getEndereco());
+//        txtbairro.setText(obj.getBairro());
+//        txtcidade.setText(obj.getCidade());
+//        cbuf.setSelectedItem(obj.getUf());
+//        System.out.println(obj.getUf());
+//
+//    }
 }
