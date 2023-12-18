@@ -659,11 +659,14 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // editar
         // botão salvar
-        Clientes obj = new Clientes();
+        Funcionarios obj = new Funcionarios();
         obj.setNome(txtnome.getText());
         obj.setRg(txtrg.getText());
         obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
+        obj.setSenha(txtsenha.getText());
+        obj.setCargo(txtcargo.getText());        
+        obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
         obj.setTelefone(txtfixo.getText());
         obj.setCelular(txtcelular.getText());
         obj.setCep(txtcep.getText());
@@ -672,11 +675,11 @@ public class FrmFuncionarios extends javax.swing.JFrame {
         obj.setComplemento(txtcompl.getText());
         obj.setBairro(txtbairro.getText());
         obj.setCidade(txtcargo.getText());
-        obj.setEstado(cbnivel.getSelectedItem().toString());
+        obj.setEstado(combouf.getSelectedItem().toString());
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClientesDAO dao = new ClientesDAO();
-        dao.alterarCilente(obj);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        dao.alterarFuncionario(obj);
 
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btneditarActionPerformed
