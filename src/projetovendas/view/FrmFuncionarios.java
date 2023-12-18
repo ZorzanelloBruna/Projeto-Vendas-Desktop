@@ -686,11 +686,11 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         // excluir        
-        Clientes obj = new Clientes();
+        Funcionarios obj = new Funcionarios();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClientesDAO dao = new ClientesDAO();
-        dao.excluirCilente(obj);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        dao.excluirFuncionario(obj);
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btnexcluirActionPerformed
 
@@ -706,22 +706,25 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
     private void tabelafuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelafuncionariosMouseClicked
         // ao clicar no item selecionado da aba desejada, ele ira direcionar na primeira aba da dela, ou a que desejar basta trocar o indice
-        jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setSelectedIndex(1);
         //esse campo vai carregar os dados do cliente q foi selecionado na primera aba(aba de cadastro de clientes)
         txtcodigo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 0).toString());
         txtnome.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 1).toString());
         txtrg.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 2).toString());
         txtcpf.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 3).toString());
         txtemail.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 4).toString());
-        txtfixo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 8).toString());
-        txtnum.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 9).toString());
-        txtcompl.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 11).toString());
-        txtcargo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 12).toString());
-        cbnivel.setSelectedItem(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 13).toString());
+        txtsenha.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(),5 ).toString());
+        txtcargo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 6).toString());
+        cbnivel.setSelectedItem(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 7).toString());
+        txtfixo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 8).toString());
+        txtcelular.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 9).toString());
+        txtcep.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 10).toString());
+        txtendereco.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 11).toString());
+        txtnum.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 12).toString());
+        txtcompl.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 13).toString());
+        txtbairro.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 14).toString());
+        txtcargo.setText(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 15).toString());
+        combouf.setSelectedItem(tabelafuncionarios.getValueAt(tabelafuncionarios.getSelectedRow(), 16).toString());
 
     }//GEN-LAST:event_tabelafuncionariosMouseClicked
 
