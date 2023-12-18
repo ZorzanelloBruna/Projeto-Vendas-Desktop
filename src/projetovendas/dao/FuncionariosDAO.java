@@ -245,4 +245,29 @@ public class FuncionariosDAO {
             return null;
         }
     }
+    
+    //Método efetuar login
+    public void efetuarLogin(String email, String senha){
+        try {
+            //comando sql
+            String sql = "select from tb_funcionarios where email=?, senha?";
+            PreparedStatement stmt = con.prepareStatement(sql);            
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            
+            //toda vez que se usa um select deve-se usar o ResultSet
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                //Usuário conluiu login
+                JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
+                      
+            } else{
+                //Dados incoretos
+                JOptionPane.showMessageDialog(null, "Dados incorretos, impossível efetuar login!");
+            }           
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+    }
 }
