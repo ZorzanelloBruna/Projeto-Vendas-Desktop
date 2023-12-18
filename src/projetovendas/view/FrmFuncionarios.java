@@ -21,30 +21,33 @@ import projetovendas.model.Utilitarios;
 public class FrmFuncionarios extends javax.swing.JFrame {
 
     // método listar na tabela
-    public void listarTabela() {
+    public void listarFuncionarios() {
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.listarCliente();
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.listarFuncionarios();
 
         DefaultTableModel dados = (DefaultTableModel) tabelafuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+        for (Funcionarios funcionarios : lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+                funcionarios .getId(),
+                funcionarios .getNome(),
+                funcionarios .getRg(),
+                funcionarios .getCpf(),
+                funcionarios .getEmail(),
+                funcionarios .getCargo(),
+                funcionarios .getSenha(),
+                funcionarios .getNivel_acesso(),
+                funcionarios .getTelefone(),
+                funcionarios .getCelular(),
+                funcionarios .getCep(),
+                funcionarios .getEndereco(),
+                funcionarios .getNumero(),
+                funcionarios .getComplemento(),
+                funcionarios .getBairro(),
+                funcionarios .getCidade(),
+                funcionarios .getEstado()
             });
         }
 
@@ -694,7 +697,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // carregar a lista
-        listarTabela();
+        listarFuncionarios();
 
     }//GEN-LAST:event_formWindowActivated
 
