@@ -600,28 +600,31 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // botão pesquisar
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscarPorNome(nome);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.buscarFuncionarioPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelafuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+          for (Funcionarios funcionarios: lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+                funcionarios .getId(),
+                funcionarios .getNome(),
+                funcionarios .getRg(),
+                funcionarios .getCpf(),
+                funcionarios .getEmail(),
+                funcionarios .getCargo(),
+                funcionarios .getSenha(),
+                funcionarios .getNivel_acesso(),
+                funcionarios .getTelefone(),
+                funcionarios .getCelular(),
+                funcionarios .getCep(),
+                funcionarios .getEndereco(),
+                funcionarios .getNumero(),
+                funcionarios .getComplemento(),
+                funcionarios .getBairro(),
+                funcionarios .getCidade(),
+                funcionarios .getEstado()
             });
         }
     }//GEN-LAST:event_btnpesquisarActionPerformed
@@ -731,28 +734,31 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
         // TODO add your handling code here:
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscarPorNome(nome);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.buscarFuncionarioPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelafuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+        for (Funcionarios funcionarios : lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+                funcionarios .getId(),
+                funcionarios .getNome(),
+                funcionarios .getRg(),
+                funcionarios .getCpf(),
+                funcionarios .getEmail(),
+                funcionarios .getCargo(),
+                funcionarios .getSenha(),
+                funcionarios .getNivel_acesso(),
+                funcionarios .getTelefone(),
+                funcionarios .getCelular(),
+                funcionarios .getCep(),
+                funcionarios .getEndereco(),
+                funcionarios .getNumero(),
+                funcionarios .getComplemento(),
+                funcionarios .getBairro(),
+                funcionarios .getCidade(),
+                funcionarios .getEstado()
             });
         }
     }//GEN-LAST:event_txtpesquisaKeyPressed
@@ -762,11 +768,11 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtcodigoActionPerformed
 
     private void btnpesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesqActionPerformed
-        // pesquisar primeira tela
+        // pesquisar funcionario por nome
 
         String nome = txtnome.getText();
-        Clientes obj = new Clientes();
-        ClientesDAO dao = new ClientesDAO();
+        Funcionarios obj = new Funcionarios();
+        FuncionariosDAO dao = new FuncionariosDAO();
 
         obj = dao.consultaPorNome(nome);
 
@@ -777,6 +783,9 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             txtrg.setText(obj.getRg());
             txtcpf.setText(obj.getCpf());
             txtemail.setText(obj.getEmail());
+            txtsenha.setText(obj.getSenha());
+            txtcargo.setText(obj.getCargo());
+            cbnivel.setSelectedItem(obj.getNivel_acesso());
             txtfixo.setText(obj.getTelefone());
             txtcelular.setText(obj.getCelular());
             txtcep.setText(obj.getCep());
@@ -785,7 +794,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             txtcompl.setText(obj.getComplemento());
             txtbairro.setText(obj.getBairro());
             txtcargo.setText(obj.getCidade());
-            cbnivel.setSelectedItem(obj.getEstado());
+            combouf.setSelectedItem(obj.getEstado());
         } else {
             JOptionPane.showMessageDialog(null, "Usuário não encontrado");
         }
