@@ -66,8 +66,8 @@ public class FuncionariosDAO {
 
     }
         
-        //Método alterar dados do Funcionário
-      public void alterarFuncionario(Funcionarios obj) {
+    //Método alterar dados do Funcionário
+    public void alterarFuncionario(Funcionarios obj) {
         try {
             //1° passo - criar comamndo sql
             String sql = " update tb_funcionarios set nome=?, rg=?, cpf=?,email=?,senha=?,cargo=?,nivel_acesso=?,telefone=?,celular=?,cep=?,endereco=?,numero=?,complemento=?,"
@@ -144,6 +144,25 @@ public class FuncionariosDAO {
             JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
             return null;
         }
+    }
+    //Excluir Dados funcionário
+    public void excluirFuncionario(Funcionarios obj) {
+        try {
+            //1° passo - criar comamndo sql
+            String sql = " delete from tb_funcionarios where id=?";
 
-    }  
+            //2° passo - conectar o banco de dados e organizar o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+
+            //3° passo - executar o comando sql
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Excluido com Sucesso!!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir usuário." + e);
+        }
+    }
 }
