@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
-import projetovendas.model.Clientes;
 import projetovendas.model.Funcionarios;
 import projetovendas.view.FrmMenu;
 
@@ -263,6 +262,7 @@ public class FuncionariosDAO {
                 JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
                 //comando para aparecer menu após efetuar login
                  FrmMenu tela = new FrmMenu();
+                 tela.usuarioLogado = rs.getString("nome"); //pegando o nome do usuário logado para aparecer na tela do menuprincipal
                  tela.setVisible(true);
             } else{
                 //Dados incoretos
