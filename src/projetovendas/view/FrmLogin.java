@@ -4,6 +4,9 @@
  */
 package projetovendas.view;
 
+import javax.swing.JOptionPane;
+import projetovendas.dao.FuncionariosDAO;
+
 /**
  *
  * @author Usuario
@@ -35,7 +38,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnentrar = new javax.swing.JButton();
         btnsair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seja bem-vindo ao sistema- Autenticação");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
@@ -75,6 +78,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnentrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnentrar.setText("ENTRAR");
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnentrarActionPerformed(evt);
+            }
+        });
 
         btnsair.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnsair.setText("SAIR");
@@ -129,6 +137,22 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
+        // botão entrar
+        try {
+            String email, senha;
+                email = txtemail.getText();
+                senha = txtsenha.getText();
+            
+            FuncionariosDAO dao = new FuncionariosDAO();
+            
+            dao.efetuarLogin(email, senha);
+            this.dispose(); // vai fechar a tela de login após dados validados
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     /**
      * @param args the command line arguments

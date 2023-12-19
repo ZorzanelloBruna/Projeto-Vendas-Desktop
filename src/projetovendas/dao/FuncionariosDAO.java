@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
 import projetovendas.model.Clientes;
 import projetovendas.model.Funcionarios;
+import projetovendas.view.FrmMenu;
 
 /**
  *
@@ -250,18 +251,19 @@ public class FuncionariosDAO {
     public void efetuarLogin(String email, String senha){
         try {
             //comando sql
-            String sql = "select from tb_funcionarios where email=?, senha?";
+            String sql = "select * from tb_funcionarios where email=? and senha=?";
             PreparedStatement stmt = con.prepareStatement(sql);            
             stmt.setString(1, email);
             stmt.setString(2, senha);
             
             //toda vez que se usa um select deve-se usar o ResultSet
-            ResultSet rs = stmt.executeQuery();
-            
+            ResultSet rs = stmt.executeQuery();            
             if (rs.next()) {
                 //Usuário conluiu login
                 JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
-                      
+                //comando para aparecer menu após efetuar login
+                 FrmMenu tela = new FrmMenu();
+                 tela.setVisible(true);
             } else{
                 //Dados incoretos
                 JOptionPane.showMessageDialog(null, "Dados incorretos, impossível efetuar login!");
@@ -270,4 +272,5 @@ public class FuncionariosDAO {
                 JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
+    
 }
