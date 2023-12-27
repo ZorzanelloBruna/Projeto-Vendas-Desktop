@@ -22,9 +22,9 @@ public class FornecedoresDAO {
 
     public FornecedoresDAO() {
         this.con = new ConnectionFactory().getConnection();
-    }    
-        
-     public void cadastrarFornecedores(Fornecedores obj) {
+    }
+
+    public void cadastrarFornecedores(Fornecedores obj) {
 
         try {
             //1° passo - criar comamndo sql
@@ -56,8 +56,8 @@ public class FornecedoresDAO {
             JOptionPane.showMessageDialog(null, "Erro ao realizar o cadastro." + e);
         }
     }
-     
-      public void excluirFornecedor(Fornecedores obj) {
+
+    public void excluirFornecedor(Fornecedores obj) {
         try {
             //1° passo - criar comamndo sql
             String sql = " delete from tb_fornecedores where id=?";
@@ -74,6 +74,39 @@ public class FornecedoresDAO {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir usuário." + e);
+        }
+    }
+
+    public void alterarFornecedor(Fornecedores obj) {
+        try {
+            //1° passo - criar comamndo sql
+            String sql = " update tb_fornecedores set nome=?, cnpj=?,email=?,telefone=?,celular=?,cep=?,endereco=?,numero=?,complemento=?,"
+                    + "bairro=?,cidade=?,estado=?  where id=?";
+
+            //2° passo - conectar o banco de dados e organizar o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getNome());
+            stmt.setString(2, obj.getCnpj());
+            stmt.setString(3, obj.getEmail());
+            stmt.setString(4, obj.getTelefone());
+            stmt.setString(5, obj.getCelular());
+            stmt.setString(6, obj.getCep());
+            stmt.setString(7, obj.getEndereco());
+            stmt.setInt(8, obj.getNumero());
+            stmt.setString(9, obj.getComplemento());
+            stmt.setString(10, obj.getBairro());
+            stmt.setString(11, obj.getCidade());
+            stmt.setString(12, obj.getEstado());
+            stmt.setInt(13, obj.getId());
+
+            //3° passo - executar o comando sql
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Alteração realizada com Sucesso!!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao realizar alteração." + e);
         }
     }
 }
