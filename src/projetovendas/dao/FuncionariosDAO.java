@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
 import projetovendas.model.Funcionarios;
+import projetovendas.view.FrmLogin;
 import projetovendas.view.FrmMenu;
 
 /**
@@ -267,6 +268,7 @@ public class FuncionariosDAO {
             } else{
                 //Dados incoretos
                 JOptionPane.showMessageDialog(null, "Dados incorretos, impossível efetuar login!");
+                new FrmLogin().setVisible(true);
             }           
         } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e);
