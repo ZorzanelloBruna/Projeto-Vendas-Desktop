@@ -23,7 +23,7 @@ public class FornecedoresDAO {
         this.con = new ConnectionFactory().getConnection();
     }    
         
-     public void cadastrarCilente(Fornecedores obj) {
+     public void cadastrarFornecedores(Fornecedores obj) {
 
         try {
             //1° passo - criar comamndo sql
