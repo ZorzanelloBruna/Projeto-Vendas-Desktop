@@ -149,6 +149,77 @@ public class FornecedoresDAO {
             JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
             return null;
         }
+    }
+           //metodo consulta cliente por nome
 
+    public Fornecedores consultaPorNome(String nome) {
+        Fornecedores obj = new Fornecedores();
+        try {
+            //1 passo -criar o comando sql,organizar e executar
+            String sql = "select * from tb_fornecedores where nome =?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCnpj(rs.getString("cnpj"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setEstado(rs.getString("estado"));
+            }
+            return obj;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado" + e);
+            return null;
+        }
+    }
+    
+       //método buscar cliente por nome
+    public List<Fornecedores> buscarPorNome(String nome) {
+        try {
+            //1 passo - criar a lista             
+            List<Fornecedores> lista = new ArrayList<>();
+
+            //2 passo -criar o comando sql,organizar e executar
+            String sql = "select * from tb_fornecedores where nome like ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Fornecedores obj = new Fornecedores();
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCnpj(rs.getString("cnpj"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setEstado(rs.getString("estado"));
+
+                lista.add(obj);
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
+            return null;
+        }
     }
 }
