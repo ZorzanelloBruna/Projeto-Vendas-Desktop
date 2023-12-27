@@ -613,11 +613,11 @@ public class FrmFornecedores extends javax.swing.JFrame {
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         // excluir        
-        Clientes obj = new Clientes();
+        Fornecedores obj = new Fornecedores();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClientesDAO dao = new ClientesDAO();
-        dao.excluirCilente(obj);
+        FornecedoresDAO dao = new FornecedoresDAO();
+        dao.excluirFornecedor(obj);
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btnexcluirActionPerformed
 
