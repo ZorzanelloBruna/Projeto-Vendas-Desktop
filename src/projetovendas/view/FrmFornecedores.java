@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.ClientesDAO;
 import projetovendas.dao.FornecedoresDAO;
-import projetovendas.model.Clientes;
 import projetovendas.model.Fornecedores;
 import projetovendas.model.Utilitarios;
 
@@ -23,31 +22,29 @@ public class FrmFornecedores extends javax.swing.JFrame {
     // método listar na tabela
     public void listarTabela() {
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.listarCliente();
+       FornecedoresDAO dao = new FornecedoresDAO();
+        List<Fornecedores> lista = dao.listarFornecedoreses();
 
         DefaultTableModel dados = (DefaultTableModel) tabelafornecedores.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+        for (Fornecedores forn : lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+                forn.getId(),
+                forn.getNome(),
+                forn.getCnpj(),
+                forn.getEmail(),
+                forn.getTelefone(),
+                forn.getCelular(),
+                forn.getCep(),
+                forn.getEndereco(),
+                forn.getNumero(),
+                forn.getComplemento(),
+                forn.getBairro(),
+                forn.getCidade(),
+                forn.getEstado()
             });
         }
-
     }
 
     /**
@@ -589,10 +586,9 @@ public class FrmFornecedores extends javax.swing.JFrame {
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // editar
         // botão salvar
-        Clientes obj = new Clientes();
+        Fornecedores obj = new Fornecedores();
         obj.setNome(txtnome.getText());
         obj.setRg(txtcnpj.getText());
-        obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
         obj.setTelefone(txtfixo.getText());
         obj.setCelular(txtcelular.getText());
@@ -605,8 +601,8 @@ public class FrmFornecedores extends javax.swing.JFrame {
         obj.setEstado(combouf.getSelectedItem().toString());
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClientesDAO dao = new ClientesDAO();
-        dao.alterarCilente(obj);
+        FornecedoresDAO dao = new FornecedoresDAO();
+        dao.alterarFornecedor(obj);
 
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btneditarActionPerformed
@@ -638,17 +634,16 @@ public class FrmFornecedores extends javax.swing.JFrame {
         txtcodigo.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 0).toString());
         txtnome.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 1).toString());
         txtcnpj.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 3).toString());
-        txtemail.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 4).toString());
-        txtfixo.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 8).toString());
-        txtnum.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 9).toString());
-        txtcompl.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 12).toString());
-        combouf.setSelectedItem(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 13).toString());
+        txtemail.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 3).toString());
+        txtfixo.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 4).toString());
+        txtcelular.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 5).toString());
+        txtcep.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 6).toString());
+        txtendereco.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 7).toString());
+        txtnum.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 8).toString());
+        txtcompl.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 9).toString());
+        txtbairro.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 10).toString());
+        txtcidade.setText(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 11).toString());
+        combouf.setSelectedItem(tabelafornecedores.getValueAt(tabelafornecedores.getSelectedRow(), 12).toString());
 
     }//GEN-LAST:event_tabelafornecedoresMouseClicked
 
