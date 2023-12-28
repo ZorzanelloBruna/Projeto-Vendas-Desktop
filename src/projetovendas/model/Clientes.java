@@ -135,6 +135,4 @@ public class Clientes {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
 }

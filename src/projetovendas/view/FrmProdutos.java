@@ -9,7 +9,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.ClientesDAO;
+import projetovendas.dao.FornecedoresDAO;
 import projetovendas.model.Clientes;
+import projetovendas.model.Fornecedores;
 import projetovendas.model.Utilitarios;
 
 /**
@@ -77,7 +79,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         txtestoque = new javax.swing.JTextField();
         txtcodigo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        cbfornecedor = new javax.swing.JComboBox<>();
+        cbfornecedor = new javax.swing.JComboBox();
         btnpesq = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -162,7 +164,15 @@ public class FrmProdutos extends javax.swing.JFrame {
 
         cbfornecedor.setBackground(new java.awt.Color(255, 255, 255));
         cbfornecedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbfornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbfornecedor.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbfornecedorAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         btnpesq.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnpesq.setText("Pesquisar");
@@ -556,6 +566,16 @@ public class FrmProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdescricaoActionPerformed
 
+    private void cbfornecedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbfornecedorAncestorAdded
+        // Carregando bobobox de fornecedores        
+        FornecedoresDAO dao = new FornecedoresDAO(); 
+        List<Fornecedores> listaFornecedores = dao.listarFornecedoreses();
+            cbfornecedor.removeAll();
+            for (Fornecedores forn : listaFornecedores) {
+                cbfornecedor.addItem(forn);
+        }
+    }//GEN-LAST:event_cbfornecedorAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -599,7 +619,7 @@ public class FrmProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnpesq;
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
-    private javax.swing.JComboBox<String> cbfornecedor;
+    private javax.swing.JComboBox cbfornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
