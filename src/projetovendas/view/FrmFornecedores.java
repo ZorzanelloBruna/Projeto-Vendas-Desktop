@@ -4,7 +4,6 @@
  */
 package projetovendas.view;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -586,7 +585,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         // botão salvar
         Fornecedores obj = new Fornecedores();
         obj.setNome(txtnome.getText());
-        obj.setRg(txtcnpj.getText());
+        obj.setCnpj(txtcnpj.getText());
         obj.setEmail(txtemail.getText());
         obj.setTelefone(txtfixo.getText());
         obj.setCelular(txtcelular.getText());
