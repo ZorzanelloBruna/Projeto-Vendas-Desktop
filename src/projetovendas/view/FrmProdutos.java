@@ -24,7 +24,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         ClientesDAO dao = new ClientesDAO();
         List<Clientes> lista = dao.listarCliente();
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaclientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
         dados.setNumRows(0);
 
         for (Clientes clientes : lista) {
@@ -84,7 +84,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         txtpesquisa = new javax.swing.JTextField();
         btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaclientes = new javax.swing.JTable();
+        tabelaproutos = new javax.swing.JTable();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
@@ -246,21 +246,21 @@ public class FrmProdutos extends javax.swing.JFrame {
             }
         });
 
-        tabelaclientes.setBackground(new java.awt.Color(255, 255, 255));
-        tabelaclientes.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaproutos.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaproutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
+                "Código", "Descrição ", "Preço", "Qde Estoque", "Fornecedor"
             }
         ));
-        tabelaclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaproutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaclientesMouseClicked(evt);
+                tabelaproutosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaclientes);
+        jScrollPane1.setViewportView(tabelaproutos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -377,7 +377,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         ClientesDAO dao = new ClientesDAO();
         List<Clientes> lista = dao.buscarPorNome(nome);
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaclientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
         dados.setNumRows(0);
 
         for (Clientes clientes : lista) {
@@ -468,26 +468,26 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowActivated
 
-    private void tabelaclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaclientesMouseClicked
+    private void tabelaproutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaproutosMouseClicked
         // ao clicar no item selecionado da aba desejada, ele ira direcionar na primeira aba da dela, ou a que desejar basta trocar o indice
         jTabbedPane1.setSelectedIndex(0);
         //esse campo vai carregar os dados do cliente q foi selecionado na primera aba(aba de cadastro de clientes)
-        txtcodigo.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 0).toString());
-        txtdescricao.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 1).toString());
-        txtrg.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 3).toString());
-        txtpreco.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 4).toString());
-        txtfixo.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 7).toString());
-        txtestoque.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 8).toString());
-        txtnum.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 9).toString());
-        txtcompl.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 12).toString());
-        cbfornecedor.setSelectedItem(tabelaclientes.getValueAt(tabelaclientes.getSelectedRow(), 13).toString());
+        txtcodigo.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 0).toString());
+        txtdescricao.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 3).toString());
+        txtpreco.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 4).toString());
+        txtfixo.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 5).toString());
+        txtcelular.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 6).toString());
+        txtcep.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 7).toString());
+        txtestoque.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 8).toString());
+        txtnum.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 9).toString());
+        txtcompl.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 10).toString());
+        txtbairro.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 11).toString());
+        txtcidade.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 12).toString());
+        cbfornecedor.setSelectedItem(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 13).toString());
 
-    }//GEN-LAST:event_tabelaclientesMouseClicked
+    }//GEN-LAST:event_tabelaproutosMouseClicked
 
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
         // TODO add your handling code here:
@@ -495,7 +495,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         ClientesDAO dao = new ClientesDAO();
         List<Clientes> lista = dao.buscarPorNome(nome);
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaclientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
         dados.setNumRows(0);
 
         for (Clientes clientes : lista) {
@@ -612,7 +612,7 @@ public class FrmProdutos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel paineldados;
-    private javax.swing.JTable tabelaclientes;
+    private javax.swing.JTable tabelaproutos;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtestoque;
