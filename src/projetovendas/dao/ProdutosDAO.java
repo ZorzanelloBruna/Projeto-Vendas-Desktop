@@ -99,8 +99,24 @@ public class ProdutosDAO {
 
             JOptionPane.showMessageDialog(null, "Produto alterado com Sucesso");
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar o Produto." + e);
         }
+    }
+    public void excluir(Produtos obj) {
+        try {
+            String sql = "delete from tb_produtos where id=?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, obj.getId());
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Produto excluido com Sucesso");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o produto." + e);
+        }
+
     }
 }
