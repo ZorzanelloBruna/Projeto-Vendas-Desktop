@@ -84,7 +84,7 @@ public class ProdutosDAO {
     
         public void alterar(Produtos obj) {
         try {
-            String sql = "update tb_produtos set descricao=? , preco =?,  qtd_estoque=?, for_id =? , where id=? ";
+            String sql = "update tb_produtos set descricao=?, preco=?, qtd_estoque=?, for_id=? where id=?";
             //organizando as informações para irem p banco de dados
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getDescricao());
