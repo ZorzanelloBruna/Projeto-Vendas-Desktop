@@ -428,25 +428,20 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // editar
-        // botão salvar
-        Clientes obj = new Clientes();
-        obj.setNome(txtdescricao.getText());
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtpreco.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcelular.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtestoque.getText());
-        obj.setNumero(Integer.parseInt(txtnum.getText()));
-        obj.setComplemento(txtcompl.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setEstado(cbfornecedor.getSelectedItem().toString());
+        Produtos obj = new Produtos();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
-
-        ClientesDAO dao = new ClientesDAO();
-        dao.alterarCilente(obj);
+        obj.setDescricao(txtdescricao.getText());
+        obj.setPreco(Double.parseDouble(txtpreco.getText()));
+        obj.setQdeEstoque(Integer.parseInt(txtestoque.getText()));
+        
+        //criar um objeto de fornecedor
+        Fornecedores f = new Fornecedores();
+        f = (Fornecedores) cbfornecedor.getSelectedItem();
+        
+        obj.setFornecedor(f);
+        
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.alterar(obj);
 
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btneditarActionPerformed
@@ -473,10 +468,15 @@ public class FrmProdutos extends javax.swing.JFrame {
         //esse campo vai carregar os dados do cliente q foi selecionado na primera aba(aba de cadastro de clientes)
         txtcodigo.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 0).toString());
         txtdescricao.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 1).toString());
-        txtpreco.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 4).toString());
-        txtestoque.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 8).toString());
-        cbfornecedor.setSelectedItem(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 13).toString());
-
+        txtpreco.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 2).toString());
+        txtestoque.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 3).toString());
+        
+        Fornecedores f = new Fornecedores();
+        FornecedoresDAO dao = new FornecedoresDAO();
+        
+        f = dao.consultaPorNome(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 4).toString());        
+        cbfornecedor.removeAllItems();
+        cbfornecedor.getModel().setSelectedItem(f);
     }//GEN-LAST:event_tabelaproutosMouseClicked
 
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
