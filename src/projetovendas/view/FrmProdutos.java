@@ -448,11 +448,11 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         // excluir        
-        Clientes obj = new Clientes();
+        Produtos obj = new Produtos();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClientesDAO dao = new ClientesDAO();
-        dao.excluirCilente(obj);
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.excluir(obj);
         new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btnexcluirActionPerformed
 
