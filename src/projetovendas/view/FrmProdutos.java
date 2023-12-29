@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.ClientesDAO;
 import projetovendas.dao.FornecedoresDAO;
+import projetovendas.dao.ProdutosDAO;
 import projetovendas.model.Clientes;
 import projetovendas.model.Fornecedores;
+import projetovendas.model.Produtos;
 import projetovendas.model.Utilitarios;
 
 /**
@@ -417,24 +419,21 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // botão salvar
-        Clientes obj = new Clientes();
-        obj.setNome(txtdescricao.getText());
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtpreco.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcelular.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtestoque.getText());
-        obj.setNumero(Integer.parseInt(txtnum.getText()));
-        obj.setComplemento(txtcompl.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setEstado(cbfornecedor.getSelectedItem().toString());
-
-        ClientesDAO dao = new ClientesDAO();
-        dao.cadastrarCilente(obj);
-        new Utilitarios().limparTela(paineldados);
+      Produtos produto = new Produtos();
+      produto.setDescricao(txtdescricao.getText());
+      produto.setPreco(Double.parseDouble(txtpreco.getText()));
+      produto.setQdeEstoque(Integer.parseInt(txtestoque.getText()));
+     
+      //criar objeto de fornecedor
+      Fornecedores f = new Fornecedores();
+      f = (Fornecedores) cbfornecedor.getSelectedItem();
+      produto.setFornecedor(f);
+      
+      ProdutosDAO dao = new ProdutosDAO();
+      dao.cadastrar(produto);
+      
+      new Utilitarios().limparTela(paineldados);
+      
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
