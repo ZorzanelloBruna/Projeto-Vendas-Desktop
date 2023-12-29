@@ -25,31 +25,21 @@ public class FrmProdutos extends javax.swing.JFrame {
     // método listar na tabela
     public void listarTabela() {
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.listarCliente();
+        ProdutosDAO dao = new ProdutosDAO();
+        List<Produtos> lista = dao.listarProdutos();
 
         DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+        for (Produtos produto : lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+                produto.getId(),
+                produto.getDescricao(),
+                produto.getPreco(),
+                produto.getQdeEstoque(),
+                produto.getFornecedor().getNome()
             });
         }
-
     }
 
     /**
@@ -419,21 +409,21 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // botão salvar
-      Produtos produto = new Produtos();
-      produto.setDescricao(txtdescricao.getText());
-      produto.setPreco(Double.parseDouble(txtpreco.getText()));
-      produto.setQdeEstoque(Integer.parseInt(txtestoque.getText()));
-     
-      //criar objeto de fornecedor
-      Fornecedores f = new Fornecedores();
-      f = (Fornecedores) cbfornecedor.getSelectedItem();
-      produto.setFornecedor(f);
-      
-      ProdutosDAO dao = new ProdutosDAO();
-      dao.cadastrar(produto);
-      
-      new Utilitarios().limparTela(paineldados);
-      
+        Produtos produto = new Produtos();
+        produto.setDescricao(txtdescricao.getText());
+        produto.setPreco(Double.parseDouble(txtpreco.getText()));
+        produto.setQdeEstoque(Integer.parseInt(txtestoque.getText()));
+
+        //criar objeto de fornecedor
+        Fornecedores f = new Fornecedores();
+        f = (Fornecedores) cbfornecedor.getSelectedItem();
+        produto.setFornecedor(f);
+
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.cadastrar(produto);
+
+        new Utilitarios().limparTela(paineldados);
+
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
@@ -483,17 +473,8 @@ public class FrmProdutos extends javax.swing.JFrame {
         //esse campo vai carregar os dados do cliente q foi selecionado na primera aba(aba de cadastro de clientes)
         txtcodigo.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 0).toString());
         txtdescricao.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 1).toString());
-        txtrg.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 3).toString());
         txtpreco.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 4).toString());
-        txtfixo.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 7).toString());
         txtestoque.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 8).toString());
-        txtnum.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 9).toString());
-        txtcompl.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 12).toString());
         cbfornecedor.setSelectedItem(tabelaproutos.getValueAt(tabelaproutos.getSelectedRow(), 13).toString());
 
     }//GEN-LAST:event_tabelaproutosMouseClicked
@@ -567,11 +548,11 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void cbfornecedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbfornecedorAncestorAdded
         // Carregando bobobox de fornecedores        
-        FornecedoresDAO dao = new FornecedoresDAO(); 
+        FornecedoresDAO dao = new FornecedoresDAO();
         List<Fornecedores> listaFornecedores = dao.listarFornecedoreses();
-            cbfornecedor.removeAll();
-            for (Fornecedores forn : listaFornecedores) {
-                cbfornecedor.addItem(forn);
+        cbfornecedor.removeAll();
+        for (Fornecedores forn : listaFornecedores) {
+            cbfornecedor.addItem(forn);
         }
     }//GEN-LAST:event_cbfornecedorAncestorAdded
 
