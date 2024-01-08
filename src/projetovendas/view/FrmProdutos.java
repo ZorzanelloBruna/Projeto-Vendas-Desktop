@@ -459,7 +459,6 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // carregar a lista
         listarTabela();
-
     }//GEN-LAST:event_formWindowActivated
 
     private void tabelaproutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaproutosMouseClicked
@@ -482,57 +481,38 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
         // TODO add your handling code here:
         String nome = "%" + txtpesquisa.getText() + "%";
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscarPorNome(nome);
+        ProdutosDAO dao = new ProdutosDAO();
+        List<Produtos> lista = dao.buscarPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
         dados.setNumRows(0);
 
-        for (Clientes clientes : lista) {
+        for (Produtos produtos : lista) {
             dados.addRow(new Object[]{
-                clientes.getId(),
-                clientes.getNome(),
-                clientes.getRg(),
-                clientes.getCpf(),
-                clientes.getEmail(),
-                clientes.getTelefone(),
-                clientes.getCelular(),
-                clientes.getCep(),
-                clientes.getEndereco(),
-                clientes.getNumero(),
-                clientes.getComplemento(),
-                clientes.getBairro(),
-                clientes.getCidade(),
-                clientes.getEstado()
+               produtos.getId(),
+               produtos.getDescricao(),
+               produtos.getPreco(),
+               produtos.getQdeEstoque(),
+               produtos.getFornecedor().getNome()
             });
         }
     }//GEN-LAST:event_txtpesquisaKeyPressed
 
     private void btnpesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesqActionPerformed
         // pesquisar primeira tela
-
         String nome = txtdescricao.getText();
-        Clientes obj = new Clientes();
-        ClientesDAO dao = new ClientesDAO();
+        Produtos obj = new Produtos();
+        ProdutosDAO dao = new ProdutosDAO();
 
         obj = dao.consultaPorNome(nome);
 
-        if (obj.getNome() != null) {
+        if (obj.getDescricao() != null) {
             //exibir os dados d o obj nos campos de texto
             txtcodigo.setText(String.valueOf(obj.getId()));
-            txtdescricao.setText(obj.getNome());
-            txtrg.setText(obj.getRg());
-            txtcpf.setText(obj.getCpf());
-            txtpreco.setText(obj.getEmail());
-            txtfixo.setText(obj.getTelefone());
-            txtcelular.setText(obj.getCelular());
-            txtcep.setText(obj.getCep());
-            txtestoque.setText(obj.getEndereco());
-            txtnum.setText(String.valueOf(obj.getNumero()));
-            txtcompl.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbfornecedor.setSelectedItem(obj.getEstado());
+            txtdescricao.setText(obj.getDescricao());
+            txtpreco.setText(String.valueOf(obj.getPreco()));
+            txtestoque.setText(String.valueOf(obj.getQdeEstoque()));
+            cbfornecedor.setSelectedItem(obj.getFornecedor().getNome());
         } else {
             JOptionPane.showMessageDialog(null, "Usuário não encontrado");
         }
