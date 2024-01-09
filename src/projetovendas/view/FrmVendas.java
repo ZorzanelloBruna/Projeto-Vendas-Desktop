@@ -60,35 +60,36 @@ public class FrmVendas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btneditar = new javax.swing.JButton();
-        btnexcluir = new javax.swing.JButton();
+        btnpagamento = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtnome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtnome1 = new javax.swing.JTextField();
+        txtnome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtnome2 = new javax.swing.JTextField();
-        btnpesq2 = new javax.swing.JButton();
+        txtdataAtual = new javax.swing.JTextField();
+        btnBuscarCliente = new javax.swing.JButton();
+        txtcpf = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaItens = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        txtnome8 = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtnome9 = new javax.swing.JTextField();
+        txtdescricao = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtnome10 = new javax.swing.JTextField();
+        txtpreco = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtnome11 = new javax.swing.JTextField();
-        btnpesq3 = new javax.swing.JButton();
-        btnpesq4 = new javax.swing.JButton();
+        txtqtd = new javax.swing.JTextField();
+        btnBuscarProduto = new javax.swing.JButton();
+        btnAddItem = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        txtnome12 = new javax.swing.JTextField();
+        txttotal = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tela de Vendas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -97,7 +98,7 @@ public class FrmVendas extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ponto de Vendas");
 
@@ -106,31 +107,31 @@ public class FrmVendas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(207, 207, 207)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btneditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btneditar.setText("PAGAMENTO");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
+        btnpagamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnpagamento.setText("PAGAMENTO");
+        btnpagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
+                btnpagamentoActionPerformed(evt);
             }
         });
 
-        btnexcluir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnexcluir.setText("CANCELAR PEDIDO");
-        btnexcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setText("CANCELAR PEDIDO");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexcluirActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -140,6 +141,9 @@ public class FrmVendas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("CPF:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Nome:");
+
         txtnome.setBackground(new java.awt.Color(255, 255, 255));
         txtnome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtnome.addActionListener(new java.awt.event.ActionListener() {
@@ -148,35 +152,32 @@ public class FrmVendas extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nome:");
-
-        txtnome1.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome1ActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Data:");
 
-        txtnome2.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome2.addActionListener(new java.awt.event.ActionListener() {
+        txtdataAtual.setBackground(new java.awt.Color(255, 255, 255));
+        txtdataAtual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtdataAtual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome2ActionPerformed(evt);
+                txtdataAtualActionPerformed(evt);
             }
         });
 
-        btnpesq2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnpesq2.setText("Pesquisar");
-        btnpesq2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarCliente.setText("Pesquisar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesq2ActionPerformed(evt);
+                btnBuscarClienteActionPerformed(evt);
             }
         });
+
+        txtcpf.setBackground(new java.awt.Color(255, 255, 255));
+        try {
+            txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtcpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -188,21 +189,21 @@ public class FrmVendas extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome1))
+                        .addComponent(txtnome))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtdataAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(btnpesq2)))
+                        .addComponent(btnBuscarCliente)))
                 .addGap(36, 36, 36))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,15 +211,15 @@ public class FrmVendas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txtnome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(txtdataAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(btnpesq2))
+                    .addComponent(btnBuscarCliente)
+                    .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -252,60 +253,60 @@ public class FrmVendas extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Código:");
 
-        txtnome8.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome8.addActionListener(new java.awt.event.ActionListener() {
+        txtcodigo.setBackground(new java.awt.Color(255, 255, 255));
+        txtcodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome8ActionPerformed(evt);
+                txtcodigoActionPerformed(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Produto:");
 
-        txtnome9.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome9.addActionListener(new java.awt.event.ActionListener() {
+        txtdescricao.setBackground(new java.awt.Color(255, 255, 255));
+        txtdescricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtdescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome9ActionPerformed(evt);
+                txtdescricaoActionPerformed(evt);
             }
         });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Preço:");
 
-        txtnome10.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome10.addActionListener(new java.awt.event.ActionListener() {
+        txtpreco.setBackground(new java.awt.Color(255, 255, 255));
+        txtpreco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome10ActionPerformed(evt);
+                txtprecoActionPerformed(evt);
             }
         });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Qtd:");
 
-        txtnome11.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnome11.addActionListener(new java.awt.event.ActionListener() {
+        txtqtd.setBackground(new java.awt.Color(255, 255, 255));
+        txtqtd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtqtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome11ActionPerformed(evt);
+                txtqtdActionPerformed(evt);
             }
         });
 
-        btnpesq3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnpesq3.setText("Pesquisar");
-        btnpesq3.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarProduto.setText("Pesquisar");
+        btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesq3ActionPerformed(evt);
+                btnBuscarProdutoActionPerformed(evt);
             }
         });
 
-        btnpesq4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnpesq4.setText("Adicionar Item");
-        btnpesq4.addActionListener(new java.awt.event.ActionListener() {
+        btnAddItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAddItem.setText("Adicionar Item");
+        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesq4ActionPerformed(evt);
+                btnAddItemActionPerformed(evt);
             }
         });
 
@@ -319,26 +320,26 @@ public class FrmVendas extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtnome8, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnpesq3))
+                        .addComponent(btnBuscarProduto))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnome9)
+                            .addComponent(txtdescricao)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtnome10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtnome11, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(36, 36, 36))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(btnpesq4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -346,21 +347,21 @@ public class FrmVendas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(btnpesq3))
+                    .addComponent(btnBuscarProduto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
-                    .addComponent(txtnome9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
-                    .addComponent(txtnome11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtqtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnpesq4)
+                .addComponent(btnAddItem)
                 .addGap(19, 19, 19))
         );
 
@@ -371,12 +372,12 @@ public class FrmVendas extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("TOTAL:");
 
-        txtnome12.setBackground(new java.awt.Color(255, 255, 255));
-        txtnome12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtnome12.setForeground(new java.awt.Color(255, 0, 51));
-        txtnome12.addActionListener(new java.awt.event.ActionListener() {
+        txttotal.setBackground(new java.awt.Color(255, 255, 255));
+        txttotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txttotal.setForeground(new java.awt.Color(255, 0, 51));
+        txttotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome12ActionPerformed(evt);
+                txttotalActionPerformed(evt);
             }
         });
 
@@ -388,14 +389,14 @@ public class FrmVendas extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(txtnome12, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome12, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(0, 16, Short.MAX_VALUE))
         );
@@ -421,13 +422,13 @@ public class FrmVendas extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btneditar)
+                .addComponent(btnpagamento)
                 .addGap(37, 37, 37)
-                .addComponent(btnexcluir)
+                .addComponent(btnCancelar)
                 .addGap(53, 53, 53))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btneditar, btnexcluir});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnpagamento});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,17 +446,17 @@ public class FrmVendas extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btneditar)
-                    .addComponent(btnexcluir))
+                    .addComponent(btnpagamento)
+                    .addComponent(btnCancelar))
                 .addGap(0, 35, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btneditar, btnexcluir});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnpagamento});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+    private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
         // editar
         Produtos obj = new Produtos();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
@@ -473,9 +474,9 @@ public class FrmVendas extends javax.swing.JFrame {
         dao.alterar(obj);
 
         new Utilitarios().limparTela(paineldados);
-    }//GEN-LAST:event_btneditarActionPerformed
+    }//GEN-LAST:event_btnpagamentoActionPerformed
 
-    private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // excluir        
         Produtos obj = new Produtos();
         obj.setId(Integer.parseInt(txtcodigo.getText()));
@@ -483,7 +484,7 @@ public class FrmVendas extends javax.swing.JFrame {
         ProdutosDAO dao = new ProdutosDAO();
         dao.excluir(obj);
         new Utilitarios().limparTela(paineldados);
-    }//GEN-LAST:event_btnexcluirActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // carregar a lista
@@ -494,45 +495,41 @@ public class FrmVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnomeActionPerformed
 
-    private void txtnome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome1ActionPerformed
+    private void txtdataAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataAtualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome1ActionPerformed
+    }//GEN-LAST:event_txtdataAtualActionPerformed
 
-    private void txtnome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome2ActionPerformed
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome2ActionPerformed
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
-    private void btnpesq2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesq2ActionPerformed
+    private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnpesq2ActionPerformed
+    }//GEN-LAST:event_txtcodigoActionPerformed
 
-    private void txtnome8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome8ActionPerformed
+    private void txtdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome8ActionPerformed
+    }//GEN-LAST:event_txtdescricaoActionPerformed
 
-    private void txtnome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome9ActionPerformed
+    private void txtprecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome9ActionPerformed
+    }//GEN-LAST:event_txtprecoActionPerformed
 
-    private void txtnome10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome10ActionPerformed
+    private void txtqtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtqtdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome10ActionPerformed
+    }//GEN-LAST:event_txtqtdActionPerformed
 
-    private void txtnome11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome11ActionPerformed
+    private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome11ActionPerformed
+    }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
-    private void btnpesq3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesq3ActionPerformed
+    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnpesq3ActionPerformed
+    }//GEN-LAST:event_btnAddItemActionPerformed
 
-    private void btnpesq4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesq4ActionPerformed
+    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnpesq4ActionPerformed
-
-    private void txtnome12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome12ActionPerformed
+    }//GEN-LAST:event_txttotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,11 +570,11 @@ public class FrmVendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btneditar;
-    private javax.swing.JButton btnexcluir;
-    private javax.swing.JButton btnpesq2;
-    private javax.swing.JButton btnpesq3;
-    private javax.swing.JButton btnpesq4;
+    private javax.swing.JButton btnAddItem;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarProduto;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnpagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -594,13 +591,13 @@ public class FrmVendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaItens;
+    private javax.swing.JTextField txtcodigo;
+    private javax.swing.JFormattedTextField txtcpf;
+    private javax.swing.JTextField txtdataAtual;
+    private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtnome;
-    private javax.swing.JTextField txtnome1;
-    private javax.swing.JTextField txtnome10;
-    private javax.swing.JTextField txtnome11;
-    private javax.swing.JTextField txtnome12;
-    private javax.swing.JTextField txtnome2;
-    private javax.swing.JTextField txtnome8;
-    private javax.swing.JTextField txtnome9;
+    private javax.swing.JTextField txtpreco;
+    private javax.swing.JTextField txtqtd;
+    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }
