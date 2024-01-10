@@ -147,7 +147,37 @@ public class ProdutosDAO {
             return null;
         }
     }
-      
+       //metodo busca produto por código
+    public Produtos buscaPorCodigo(int id) {
+        Produtos obj = new Produtos();
+        Fornecedores f = new Fornecedores();
+        try {
+            //1 passo -criar o comando sql,organizar e executar
+            String sql = "select p.id, p.descricao, p.preco, p. qtd_estoque, f.nome from tb_produtos as p "
+                    + "inner join tb_fornecedores as f on (p.for_id = f.id) where p.id like ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                obj.setId(rs.getInt("id"));
+                obj.setDescricao(rs.getString("descricao"));
+                obj.setPreco(rs.getDouble("preco"));
+                obj.setQdeEstoque(rs.getInt("qtd_estoque"));
+                
+                f.setNome(rs.getString("f.nome"));
+                obj.setFornecedor(f);
+            }
+            return obj;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado" + e);
+            return null;
+        }
+    }
+    
+    
      //método buscar cliente por nome
     public List<Produtos> buscarPorNome(String nome) {
         try {

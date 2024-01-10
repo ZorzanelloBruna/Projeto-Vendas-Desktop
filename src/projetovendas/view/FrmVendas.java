@@ -265,6 +265,11 @@ public class FrmVendas extends javax.swing.JFrame {
                 txtcodigoActionPerformed(evt);
             }
         });
+        txtcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcodigoKeyPressed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Produto:");
@@ -533,7 +538,12 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtqtdActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
-        // TODO add your handling code here:
+        Produtos obj = new Produtos();
+        ProdutosDAO dao = new ProdutosDAO();
+        obj = dao.buscaPorCodigo(Integer.parseInt(txtcodigo.getText()));
+
+        txtdescricao.setText(obj.getDescricao());
+        txtpreco.setText(String.valueOf(obj.getPreco()));
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
@@ -555,6 +565,18 @@ public class FrmVendas extends javax.swing.JFrame {
             txtnome.setText(obj.getNome());                           
         }        
     }//GEN-LAST:event_txtcpfKeyPressed
+
+    private void txtcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoKeyPressed
+        // busca por roduto
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            Produtos obj = new Produtos();
+            ProdutosDAO dao = new ProdutosDAO();
+            obj = dao.buscaPorCodigo(Integer.parseInt(txtcodigo.getText()));
+            
+            txtdescricao.setText(obj.getDescricao());
+            txtpreco.setText(String.valueOf(obj.getPreco()));
+         }
+    }//GEN-LAST:event_txtcodigoKeyPressed
 
     /**
      * @param args the command line arguments
