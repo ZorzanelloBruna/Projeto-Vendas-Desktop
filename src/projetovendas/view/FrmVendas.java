@@ -4,14 +4,11 @@
  */
 package projetovendas.view;
 
-import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import projetovendas.dao.ClientesDAO;
-import projetovendas.dao.FornecedoresDAO;
 import projetovendas.dao.ProdutosDAO;
-import projetovendas.model.Clientes;
 import projetovendas.model.Fornecedores;
 import projetovendas.model.Produtos;
 import projetovendas.model.Utilitarios;
@@ -483,12 +480,15 @@ public class FrmVendas extends javax.swing.JFrame {
 
         ProdutosDAO dao = new ProdutosDAO();
         dao.excluir(obj);
-        new Utilitarios().limparTela(paineldados);
+       new Utilitarios().limparTela(paineldados);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // carregar a lista
-        listarTabela();
+        // carregar a DATA ATUAL Do sistema
+        Date agora = new Date();
+        SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = dataBr.format(agora);
+        txtdataAtual.setText(dataFormatada);    
     }//GEN-LAST:event_formWindowActivated
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
