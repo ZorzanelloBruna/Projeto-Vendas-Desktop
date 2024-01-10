@@ -41,5 +41,25 @@ public class VendasDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao reistrar a venda." + e);
         }
-    }    
+    }        
+        //retorna a última venda
+    public int retornaUltimaVenda() {
+        try {
+            int idVenda = 0;
+
+            String sql = "select max(id) id from tb_vendas";
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Vendas p = new Vendas();
+                p.setId(rs.getInt("id"));
+                idVenda = p.getId();
+            }
+            return idVenda;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
