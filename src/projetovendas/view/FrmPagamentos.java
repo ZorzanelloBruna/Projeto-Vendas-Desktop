@@ -15,6 +15,9 @@ public class FrmPagamentos extends javax.swing.JFrame {
      */
     public FrmPagamentos() {
         initComponents();
+        txtcartao.setText("0");
+        txtcheque.setText("0");
+        txtdinheiro.setText("0");
     }
 
     /**
@@ -132,7 +135,9 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         txtTroco.setEditable(false);
         txtTroco.setBackground(new java.awt.Color(255, 255, 255));
-        txtTroco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTroco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtTroco.setForeground(new java.awt.Color(255, 0, 0));
+        txtTroco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTroco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTrocoActionPerformed(evt);
@@ -144,7 +149,9 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         txtTotalVendas.setEditable(false);
         txtTotalVendas.setBackground(new java.awt.Color(255, 255, 255));
-        txtTotalVendas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTotalVendas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtTotalVendas.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalVendas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotalVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalVendasActionPerformed(evt);
@@ -153,6 +160,11 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("FINALIZAR VENDA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,7 +216,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
                     .addComponent(txtTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +242,23 @@ public class FrmPagamentos extends javax.swing.JFrame {
     private void txtTotalVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalVendasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // finalizar venda
+        double pcartao, pcheque, pdinheiro,totalpago,totalvenda,troco;
+        
+        pcartao = Double.parseDouble(txtcartao.getText());
+        pcheque= Double.parseDouble(txtcheque.getText());
+        pdinheiro = Double.parseDouble(txtdinheiro.getText());
+        totalvenda = Double.parseDouble(txtTotalVendas.getText());
+            
+        //calcular venda (total e troco)
+        totalpago = pcartao + pcheque + pdinheiro;
+        troco = totalpago - totalvenda;
+        
+        txtTroco.setText(String.valueOf(troco));
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,7 +305,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtTotalVendas;
+    public javax.swing.JTextField txtTotalVendas;
     private javax.swing.JTextField txtTroco;
     private javax.swing.JTextField txtcartao;
     private javax.swing.JTextField txtcheque;
