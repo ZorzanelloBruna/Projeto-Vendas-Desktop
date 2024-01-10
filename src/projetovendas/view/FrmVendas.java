@@ -7,14 +7,10 @@ package projetovendas.view;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.ClientesDAO;
 import projetovendas.dao.ProdutosDAO;
 import projetovendas.model.Clientes;
-import projetovendas.model.Fornecedores;
 import projetovendas.model.Produtos;
-import projetovendas.model.Utilitarios;
 
 /**
  *
@@ -22,27 +18,7 @@ import projetovendas.model.Utilitarios;
  */
 public class FrmVendas extends javax.swing.JFrame {
 
-    // método listar na tabela
-    public void listarTabela() {
-
-        ProdutosDAO dao = new ProdutosDAO();
-        List<Produtos> lista = dao.listarProdutos();
-
-        DefaultTableModel dados = (DefaultTableModel) tabelaproutos.getModel();
-        dados.setNumRows(0);
-
-        for (Produtos produto : lista) {
-            dados.addRow(new Object[]{
-                produto.getId(),
-                produto.getDescricao(),
-                produto.getPreco(),
-                produto.getQdeEstoque(),
-                produto.getFornecedor().getNome()
-            });
-        }
-    }
-
-    /**
+   /**
      * Creates new form Frmcliente
      */
     public FrmVendas() {
@@ -467,33 +443,11 @@ public class FrmVendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
-        // editar
-        Produtos obj = new Produtos();
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-        obj.setDescricao(txtdescricao.getText());
-        obj.setPreco(Double.parseDouble(txtpreco.getText()));
-        obj.setQdeEstoque(Integer.parseInt(txtestoque.getText()));
-        
-        //criar um objeto de fornecedor
-        Fornecedores f = new Fornecedores();
-        f = (Fornecedores) cbfornecedor.getSelectedItem();
-        
-        obj.setFornecedor(f);
-        
-        ProdutosDAO dao = new ProdutosDAO();
-        dao.alterar(obj);
-
-        new Utilitarios().limparTela(paineldados);
+    //botão pagamento
     }//GEN-LAST:event_btnpagamentoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // excluir        
-        Produtos obj = new Produtos();
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-
-        ProdutosDAO dao = new ProdutosDAO();
-        dao.excluir(obj);
-       new Utilitarios().limparTela(paineldados);
+        // botão cancelar venda
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -547,7 +501,7 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        // TODO add your handling code here:
+        // botão add item
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
