@@ -156,7 +156,6 @@ public class ClientesDAO {
 
     }
     //metodo consulta cliente por nome
-
     public Clientes consultaPorNome(String nome) {
         Clientes obj = new Clientes();
         try {
@@ -190,15 +189,11 @@ public class ClientesDAO {
             return null;
         }
     }
-
-    //método buscar cliente por nome
+     //método buscar cliente por nome
     public List<Clientes> buscarPorNome(String nome) {
-
         try {
-
             //1 passo - criar a lista             
             List<Clientes> lista = new ArrayList<>();
-
             //2 passo -criar o comando sql,organizar e executar
             String sql = "select * from tb_clientes where nome like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -228,6 +223,40 @@ public class ClientesDAO {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
+            return null;
+        }
+    }
+
+    //método buscar cliente por cpf
+    public Clientes buscarPorCpf(String cpf) {
+        try {
+            //1 passo - criar a lista             
+            Clientes obj = new Clientes();
+            //2 passo -criar o comando sql,organizar e executar
+            String sql = "select * from tb_clientes where cpf like ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setEstado(rs.getString("estado"));
+            }
+            return obj;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar CPF" + e);
             return null;
         }
     }

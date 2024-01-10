@@ -4,11 +4,14 @@
  */
 package projetovendas.view;
 
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import projetovendas.dao.ClientesDAO;
 import projetovendas.dao.ProdutosDAO;
+import projetovendas.model.Clientes;
 import projetovendas.model.Fornecedores;
 import projetovendas.model.Produtos;
 import projetovendas.model.Utilitarios;
@@ -175,6 +178,11 @@ public class FrmVendas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtcpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcpfKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -500,7 +508,12 @@ public class FrmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdataAtualActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        // TODO add your handling code here:
+        // botão pesquisar
+        Clientes obj = new Clientes();
+        ClientesDAO dao = new ClientesDAO();
+
+        obj = dao.buscarPorCpf(txtcpf.getText());
+        txtnome.setText(obj.getNome());
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
@@ -530,6 +543,18 @@ public class FrmVendas extends javax.swing.JFrame {
     private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txttotalActionPerformed
+
+    private void txtcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyPressed
+        // busca cliente por cpf
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER ){
+        
+            Clientes obj = new Clientes();
+            ClientesDAO dao = new ClientesDAO();
+            
+            obj =  dao.buscarPorCpf(txtcpf.getText());   
+            txtnome.setText(obj.getNome());                           
+        }        
+    }//GEN-LAST:event_txtcpfKeyPressed
 
     /**
      * @param args the command line arguments

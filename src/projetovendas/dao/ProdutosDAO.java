@@ -147,7 +147,7 @@ public class ProdutosDAO {
             return null;
         }
     }
-    
+      
      //método buscar cliente por nome
     public List<Produtos> buscarPorNome(String nome) {
         try {
