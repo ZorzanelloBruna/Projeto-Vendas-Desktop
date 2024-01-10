@@ -7,6 +7,7 @@ package projetovendas.view;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.ClientesDAO;
 import projetovendas.dao.ProdutosDAO;
 import projetovendas.model.Clientes;
@@ -17,6 +18,11 @@ import projetovendas.model.Produtos;
  * @author Usuario
  */
 public class FrmVendas extends javax.swing.JFrame {
+    
+    double total, preco, subtotal;
+    int qtd;
+    
+    DefaultTableModel carrinho;
 
    /**
      * Creates new form Frmcliente
@@ -221,7 +227,7 @@ public class FrmVendas extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,11 +362,12 @@ public class FrmVendas extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("TOTAL:");
+        jLabel14.setText("TOTAL A PAGAR:");
 
         txttotal.setBackground(new java.awt.Color(255, 255, 255));
-        txttotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txttotal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txttotal.setForeground(new java.awt.Color(255, 0, 51));
+        txttotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txttotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttotalActionPerformed(evt);
@@ -374,7 +381,7 @@ public class FrmVendas extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -502,6 +509,23 @@ public class FrmVendas extends javax.swing.JFrame {
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         // botão add item
+        qtd = Integer.parseInt(txtqtd.getText());
+        preco = Double.parseDouble(txtpreco.getText());
+        //calcular subtotal
+        subtotal = qtd * preco;
+        
+        total+=subtotal;
+        txttotal.setText(String.valueOf(total));        
+        
+        //Adicionar o produto no carrinho d compra
+        carrinho = (DefaultTableModel) tabelaItens.getModel();        
+        carrinho.addRow(new Object[]{
+            txtcodigo.getText(),
+            txtdescricao.getText(),
+            txtqtd.getText(),
+            txtpreco.getText(),
+            subtotal
+        });
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
