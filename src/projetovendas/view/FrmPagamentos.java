@@ -6,6 +6,7 @@ package projetovendas.view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 import projetovendas.dao.VendasDAO;
 import projetovendas.model.Clientes;
 import projetovendas.model.Vendas;
@@ -17,6 +18,7 @@ import projetovendas.model.Vendas;
 public class FrmPagamentos extends javax.swing.JFrame {
 
     Clientes cliente = new Clientes();
+    DefaultTableModel carrinho;
     /**
      * Creates new form FrmPagamentos
      */
@@ -302,6 +304,11 @@ public class FrmPagamentos extends javax.swing.JFrame {
         //salvando a venda
         VendasDAO daoV = new VendasDAO();
         daoV.cadastrarVenda(objV);
+        
+        //retornar id da ulima venda relizada
+        objV.setId(daoV.retornaUltimaVenda());
+        System.out.println("Id da últma venda: " + objV.getId());
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
