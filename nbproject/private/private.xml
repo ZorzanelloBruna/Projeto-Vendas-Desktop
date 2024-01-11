@@ -3,19 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/jdbc/TestaConexao.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/dao/FuncionariosDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/model/Clientes.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/dao/ClientesDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/Frmcliente.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/model/Fornecedores.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/model/Produtos.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/FrmFornecedores.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/FrmLogin.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/dao/FornecedoresDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/dao/ProdutosDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/model/Utilitarios.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/FrmProdutos.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/FrmVendas.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ProjetoVendas/src/projetovendas/view/FrmPagamentos.java</file>
         </group>
     </open-files>
 </project-private>

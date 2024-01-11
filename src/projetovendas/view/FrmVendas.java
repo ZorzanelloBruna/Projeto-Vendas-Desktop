@@ -23,6 +23,7 @@ public class FrmVendas extends javax.swing.JFrame {
     int qtd;
     
     DefaultTableModel carrinho;
+    Clientes obj = new Clientes();
 
    /**
      * Creates new form Frmcliente
@@ -453,6 +454,7 @@ public class FrmVendas extends javax.swing.JFrame {
     //botão pagamento
     FrmPagamentos telap = new FrmPagamentos();
     telap.txtTotalVendas.setText(String.valueOf(total));
+    telap.cliente = obj;
     telap.setVisible(true);//abre pagamento
     this.dispose();//esconde a tela de vendas
     }//GEN-LAST:event_btnpagamentoActionPerformed
@@ -539,8 +541,6 @@ public class FrmVendas extends javax.swing.JFrame {
     private void txtcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcpfKeyPressed
         // busca cliente por cpf
         if(evt.getKeyCode() == KeyEvent.VK_ENTER ){
-        
-            Clientes obj = new Clientes();
             ClientesDAO dao = new ClientesDAO();
             
             obj =  dao.buscarPorCpf(txtcpf.getText());   
