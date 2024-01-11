@@ -39,7 +39,7 @@ public class VendasDAO {
             JOptionPane.showMessageDialog(null, "Venda registrada com Sucesso");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao reistrar a venda." + e);
+            JOptionPane.showMessageDialog(null, "Erro ao registrar a venda." + e);
         }
     }        
         //retorna a última venda
