@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
 import projetovendas.model.ItemVenda;
-import projetovendas.model.Vendas;
 
 /**
  *
@@ -35,8 +34,6 @@ public class ItemVendaDAO {
 
             stmt.execute();
             stmt.close();
-
-            JOptionPane.showMessageDialog(null, "Itens da venda registrada com Sucesso");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao registrar a venda." + e);
