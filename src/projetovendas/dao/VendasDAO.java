@@ -8,8 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
+import projetovendas.model.Clientes;
 import projetovendas.model.Vendas;
 
 /**
@@ -58,6 +61,41 @@ public class VendasDAO {
             return idVenda;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    //método que filtra venda por data
+     public List<Vendas> listarVendasPorPeriodo(String dataInicio, String dataFim) {
+        try {
+            //1 passo - criar a lista             
+            List<Vendas> lista = new ArrayList<>();
+
+            //2 passo -criar o comando sql,organizar e executar
+            String sql = "select v.id, v.data_venda, c.nome, v.total_venda, v.observacoes from tb_vendas as v "
+                    + " inner join tb_clientes as c on(v.cliente_id = c.id) where v.data_venda between ? and ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, dataInicio);
+            stmt.setString(2, dataFim);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Vendas obj = new Vendas();
+                Clientes objClientes = new Clientes();
+                
+                obj.setId(rs.getInt("v.id"));
+                obj.setDataVendas(rs.getString("v.data_venda"));
+                objClientes.setNome(rs.getString("c.nome"));
+                obj.setTotalVenda(rs.getDouble("v.total_venda"));
+                obj.setObs(rs.getString("observacoes"));
+                
+                obj.setCliente(objClientes);
+                lista.add(obj);
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
+            return null;
         }
     }
 }
