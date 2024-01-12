@@ -6,9 +6,16 @@ package projetovendas.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import projetovendas.jdbc.ConnectionFactory;
+import projetovendas.model.Clientes;
 import projetovendas.model.ItemVenda;
+import projetovendas.model.Produtos;
 
 /**
  *
@@ -37,6 +44,41 @@ public class ItemVendaDAO {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao registrar a venda." + e);
+        }
+    }
+    
+    //método que lista itens de uma venda por id
+      public List<ItemVenda> listarItensPorVenda(int vendaId) {
+        try {
+            //1 passo - criar a lista             
+            List<ItemVenda> lista = new ArrayList<>();
+
+            //2 passo -criar o comando sql,organizar e executar
+            String sql = "select  i.id, p.descricao, i.qtd, p.preco, i.subtotal from tb_itensvendas as i "
+                    + " inner join tb_produtos as p on(i.produto_id = p.id) where i.venda_id = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, vendaId);
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ItemVenda itemVenda = new ItemVenda();
+                Produtos produto = new Produtos();
+                
+                itemVenda.setId(rs.getInt("i.id"));
+                produto.setDescricao(rs.getString("p.descricao"));
+                itemVenda.setQtd(rs.getInt("i.qtd"));
+                produto.setPreco(rs.getDouble("p.preco"));
+                itemVenda.setSubtotal(rs.getDouble("i.subtotal"));   
+                
+                itemVenda.setProduto(produto);
+                lista.add(itemVenda);
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
+            return null;
         }
     }
 }
