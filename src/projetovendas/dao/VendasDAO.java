@@ -71,7 +71,7 @@ public class VendasDAO {
             List<Vendas> lista = new ArrayList<>();
 
             //2 passo -criar o comando sql,organizar e executar
-            String sql = "select v.id, v.data_venda, c.nome, v.total_venda, v.observacoes from tb_vendas as v "
+            String sql = "select v.id, date_format(v.data_venda,  '%d/%m/%Y') as data_formatada , c.nome, v.total_venda, v.observacoes from tb_vendas as v "
                     + " inner join tb_clientes as c on(v.cliente_id = c.id) where v.data_venda between ? and ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -84,7 +84,7 @@ public class VendasDAO {
                 Clientes objClientes = new Clientes();
                 
                 obj.setId(rs.getInt("v.id"));
-                obj.setDataVendas(rs.getString("v.data_venda"));
+                obj.setDataVendas(rs.getString("data_formatada"));
                 objClientes.setNome(rs.getString("c.nome"));
                 obj.setTotalVenda(rs.getDouble("v.total_venda"));
                 obj.setObs(rs.getString("observacoes"));
