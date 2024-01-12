@@ -254,9 +254,9 @@ public class FrmDetalheVendas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbItensVendidos;
-    private javax.swing.JTextField txtCliente;
-    private javax.swing.JTextField txtTotalVenda;
-    private javax.swing.JFormattedTextField txtdata;
-    private javax.swing.JTextArea txtobs;
+    public javax.swing.JTextField txtCliente;
+    public javax.swing.JTextField txtTotalVenda;
+    public javax.swing.JFormattedTextField txtdata;
+    public javax.swing.JTextArea txtobs;
     // End of variables declaration//GEN-END:variables
 }
