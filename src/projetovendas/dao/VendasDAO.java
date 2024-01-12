@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -64,7 +65,7 @@ public class VendasDAO {
         }
     }
     //método que filtra venda por data
-     public List<Vendas> listarVendasPorPeriodo(String dataInicio, String dataFim) {
+     public List<Vendas> listarVendasPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
         try {
             //1 passo - criar a lista             
             List<Vendas> lista = new ArrayList<>();
@@ -74,8 +75,8 @@ public class VendasDAO {
                     + " inner join tb_clientes as c on(v.cliente_id = c.id) where v.data_venda between ? and ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, dataInicio);
-            stmt.setString(2, dataFim);
+            stmt.setString(1, dataInicio.toString());
+            stmt.setString(2, dataFim.toString());
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
