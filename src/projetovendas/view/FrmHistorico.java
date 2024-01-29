@@ -9,7 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projetovendas.dao.ItemVendaDAO;
 import projetovendas.dao.VendasDAO;
+import projetovendas.model.ItemVenda;
 import projetovendas.model.Vendas;
 
 /**
@@ -190,7 +192,7 @@ public class FrmHistorico extends javax.swing.JFrame {
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // filtrar por periodo
-        
+
         //receber as datas
         try {
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -213,17 +215,36 @@ public class FrmHistorico extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado neste período." );
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado neste período.");
         }
     }//GEN-LAST:event_btnpesquisarActionPerformed
 
     private void tbHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHistoricoMouseClicked
         // Clicar em uma venda
         FrmDetalheVendas tela = new FrmDetalheVendas();
-        tela.txtCliente.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(),2).toString());
-        tela.txtTotalVenda.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(),3).toString());
-        tela.txtdata.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(),1).toString());
-        tela.txtobs.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(),4).toString());
+        tela.txtCliente.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(), 2).toString());
+        tela.txtTotalVenda.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(), 3).toString());
+        tela.txtdata.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(), 1).toString());
+        tela.txtobs.setText(tbHistorico.getValueAt(tbHistorico.getSelectedRow(), 4).toString());
+
+        int vendaId = Integer.parseInt(tbHistorico.getValueAt(tbHistorico.getSelectedRow(), 0).toString());
+
+        //dados dos itens comprados
+        ItemVenda item = new ItemVenda();
+        ItemVendaDAO daoItm = new ItemVendaDAO();
+        List<ItemVenda> listaItens = daoItm.listarItensPorVenda(vendaId);
+
+        DefaultTableModel dados = (DefaultTableModel) tela.tbItensVendidos.getModel();
+        dados.setNumRows(0);
+
+        for (ItemVenda itensVenda : listaItens) {
+            dados.addRow(new Object[]{
+                itensVenda.getProduto().getDescricao(),
+                itensVenda.getQtd(),
+                itensVenda.getProduto().getPreco(),
+                itensVenda.getSubtotal()
+            });
+        }
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tbHistoricoMouseClicked
