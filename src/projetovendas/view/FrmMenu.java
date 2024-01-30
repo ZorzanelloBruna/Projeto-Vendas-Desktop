@@ -193,6 +193,11 @@ public class FrmMenu extends javax.swing.JFrame {
 
         menuHistoricoVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/historico de vendas.png"))); // NOI18N
         menuHistoricoVendas.setText("Histórico de Vendas");
+        menuHistoricoVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHistoricoVendasActionPerformed(evt);
+            }
+        });
         menuVendas.add(menuHistoricoVendas);
 
         jMenuBar1.add(menuVendas);
@@ -299,6 +304,12 @@ public class FrmMenu extends javax.swing.JFrame {
         FrmTotalVendas telaTotalVenda = new FrmTotalVendas();
         telaTotalVenda.setVisible(true);
     }//GEN-LAST:event_menuPosicaoActionPerformed
+
+    private void menuHistoricoVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHistoricoVendasActionPerformed
+        // hiistorico de vendas
+        FrmHistorico telaHistorico = new FrmHistorico();
+        telaHistorico.setVisible(true);
+    }//GEN-LAST:event_menuHistoricoVendasActionPerformed
 
     /**
      * @param args the command line arguments
