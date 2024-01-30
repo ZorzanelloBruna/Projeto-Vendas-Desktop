@@ -175,7 +175,7 @@ public class FrmTotalVendas extends javax.swing.JFrame {
             VendasDAO dao = new VendasDAO();
             totalVenda = dao.retornaTotalVendaPorData(dataVenda);
             
-            txtTotalVenda.setText(String.valueOf(dataVenda));
+            txtTotalVenda.setText(String.valueOf(totalVenda));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Informe um data corretamente." + e);
         }
