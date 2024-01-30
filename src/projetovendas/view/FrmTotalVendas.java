@@ -165,31 +165,19 @@ public class FrmTotalVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdataInicioKeyPressed
 
     private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
-        // filtrar por periodo
-
-        //receber as datas
+      //botão calcular total venda por data
         try {
+            //receber a data
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate dataInicio = LocalDate.parse(txtdataInicio.getText(), formato);
-            LocalDate dataFim = LocalDate.parse(txtdataFim.getText(), formato);
-
+            LocalDate dataVenda = LocalDate.parse(txtdataInicio.getText(), formato);
+            
+            double totalVenda;
             VendasDAO dao = new VendasDAO();
-            List<Vendas> lista = dao.listarVendasPorPeriodo(dataInicio, dataFim);
-
-            DefaultTableModel dados = (DefaultTableModel) tbHistorico.getModel();
-            dados.setNumRows(0);
-
-            for (Vendas vendas : lista) {
-                dados.addRow(new Object[]{
-                    vendas.getId(),
-                    vendas.getDataVendas(),
-                    vendas.getCliente().getNome(),
-                    vendas.getTotalVenda(),
-                    vendas.getObs()
-                });
-            }
+            totalVenda = dao.retornaTotalVendaPorData(dataVenda);
+            
+            txtTotalVenda.setText(String.valueOf(dataVenda));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado neste período.");
+            JOptionPane.showMessageDialog(null, "Informe um data corretamente." + e);
         }
     }//GEN-LAST:event_btnconsultarActionPerformed
 
