@@ -24,6 +24,8 @@ import projetovendas.model.Vendas;
  */
 public class FrmEstoque extends javax.swing.JFrame {
     
+    int idProduto, qdeNova;
+    
       // método listar na tabela
     public void listarTabela() {
 
@@ -234,6 +236,8 @@ public class FrmEstoque extends javax.swing.JFrame {
         jPanel2.getAccessibleContext().setAccessibleName("Consulta de Estoque");
         jPanel2.getAccessibleContext().setAccessibleDescription("");
 
+        getAccessibleContext().setAccessibleName("Controle de Estoque");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -260,8 +264,9 @@ public class FrmEstoque extends javax.swing.JFrame {
 
     private void tbEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEstoqueMouseClicked
         // estoque atual
+        idProduto = Integer.parseInt(tbEstoque.getValueAt(tbEstoque.getSelectedRow(), 0).toString());
         txtdescricao.setText(tbEstoque.getValueAt(tbEstoque.getSelectedRow(), 1).toString());
-         txtestoqueAtual.setText(tbEstoque.getValueAt(tbEstoque.getSelectedRow(), 3).toString());
+        txtestoqueAtual.setText(tbEstoque.getValueAt(tbEstoque.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_tbEstoqueMouseClicked
 
     private void txtdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescricaoActionPerformed
@@ -269,7 +274,23 @@ public class FrmEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdescricaoActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // TODO add your handling code here:
+        // adicionar estoque
+        try {
+            int qtdAtualizada;
+            int qtdEstoqueAtual;
+            
+            qtdEstoqueAtual = Integer.parseInt(txtestoqueAtual.getText());
+            qdeNova =  Integer.parseInt(txtqtdEstoque.getText());
+            
+            qtdAtualizada = qtdEstoqueAtual + qdeNova;
+            ProdutosDAO dao = new ProdutosDAO();
+            
+            dao.atualizarEstoque(idProduto, qtdAtualizada);     
+             JOptionPane.showMessageDialog(null, "Estoque atualizado!" );
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto ou informe a quantidade nova." + e);
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
