@@ -53,10 +53,10 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        menuVendas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        menuPosicao = new javax.swing.JMenuItem();
+        menuHistoricoVendas = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -154,22 +154,22 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/vendas.png"))); // NOI18N
-        jMenu4.setText("Vendas");
+        menuVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/vendas.png"))); // NOI18N
+        menuVendas.setText("Vendas");
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pdv.png"))); // NOI18N
         jMenuItem6.setText("Abrir PDV");
-        jMenu4.add(jMenuItem6);
+        menuVendas.add(jMenuItem6);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/posição do dia.png"))); // NOI18N
-        jMenuItem7.setText("Posição do dia");
-        jMenu4.add(jMenuItem7);
+        menuPosicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/posição do dia.png"))); // NOI18N
+        menuPosicao.setText("Posição do dia");
+        menuVendas.add(menuPosicao);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/historico de vendas.png"))); // NOI18N
-        jMenuItem8.setText("Histórico de Vendas");
-        jMenu4.add(jMenuItem8);
+        menuHistoricoVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/historico de vendas.png"))); // NOI18N
+        menuHistoricoVendas.setText("Histórico de Vendas");
+        menuVendas.add(menuHistoricoVendas);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(menuVendas);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/configuracoes.png"))); // NOI18N
         jMenu5.setText("Configurações");
@@ -251,7 +251,6 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
@@ -262,11 +261,12 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblusuario;
+    public javax.swing.JMenuItem menuHistoricoVendas;
+    public javax.swing.JMenuItem menuPosicao;
+    public javax.swing.JMenu menuVendas;
     private javax.swing.JDesktopPane painelDesktop;
     // End of variables declaration//GEN-END:variables
 }

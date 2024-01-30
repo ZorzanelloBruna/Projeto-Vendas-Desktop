@@ -26,11 +26,9 @@ public class FuncionariosDAO {
 
     public FuncionariosDAO() {
         this.con =  new ConnectionFactory().getConnection();
-    }
-    
+    }    
     //Método Cadastrar Funcionário
     public void cadastrarFuncionario(Funcionarios obj) {
-
         try {
             //1° passo - criar comamndo sql
             String sql = " insert into tb_funcionarios(nome, rg, cpf,email,senha,cargo,nivel_acesso,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado) "
@@ -106,9 +104,7 @@ public class FuncionariosDAO {
     }
       //LISTAR FUNCIONÁRIOS 
         public List<Funcionarios> listarFuncionarios(){
-
         try {
-
             //1 passo - criar a lista             
             List<Funcionarios> lista = new ArrayList<>();
 
@@ -206,7 +202,6 @@ public class FuncionariosDAO {
     }          
         //método buscar funcionario por nome
     public List<Funcionarios> buscarFuncionarioPorNome(String nome) {
-
         try {
             //1 passo - criar a lista             
             List<Funcionarios> lista = new ArrayList<>();
@@ -248,30 +243,44 @@ public class FuncionariosDAO {
     }
     
     //Método efetuar login
-    public void efetuarLogin(String email, String senha){
+    public void efetuarLogin(String email, String senha) {
         try {
             //comando sql
             String sql = "select * from tb_funcionarios where email=? and senha=?";
-            PreparedStatement stmt = con.prepareStatement(sql);            
+            PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setString(2, senha);
-            
+
             //toda vez que se usa um select deve-se usar o ResultSet
-            ResultSet rs = stmt.executeQuery();            
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                //Usuário conluiu login
-                JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
-                //comando para aparecer menu após efetuar login
-                 FrmMenu tela = new FrmMenu();
-                 tela.usuarioLogado = rs.getString("nome"); //pegando o nome do usuário logado para aparecer na tela do menuprincipal
-                 tela.setVisible(true);
-            } else{
+                //usuario logou - usuario admin
+                if (rs.getString("nivel_acesso").equals("Admin")) {
+                    JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
+                    //comando para aparecer menu após efetuar login
+                    FrmMenu tela = new FrmMenu();
+                    tela.usuarioLogado = rs.getString("nome"); //pegando o nome do usuário logado para aparecer na tela do menuprincipal
+                    tela.setVisible(true);
+                    //usuario do tipo limitado
+                } else if (rs.getString("nivel_acesso").equals("Usuário")) {
+                    JOptionPane.showMessageDialog(null, "Seja bem vido ao sistema!");
+                    //comando para aparecer menu após efetuar login
+                    FrmMenu tela = new FrmMenu();
+                    tela.usuarioLogado = rs.getString("nome"); //pegando o nome do usuário logado para aparecer na tela do menuprincipal
+                    //desabilitar os menus
+                    tela.menuPosicao.setEnabled(false);
+                    tela.menuHistoricoVendas.setVisible(false);
+                    
+                    tela.setVisible(true);
+                }
+
+            } else {
                 //Dados incoretos
                 JOptionPane.showMessageDialog(null, "Dados incorretos, impossível efetuar login!");
                 new FrmLogin().setVisible(true);
-            }           
+            }
         } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
     
