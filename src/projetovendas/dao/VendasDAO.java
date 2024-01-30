@@ -98,5 +98,24 @@ public class VendasDAO {
             JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
             return null;
         }
+    }
+     
+     //Método que calcula total da venda por data
+     public double retornaTotalVendaPorData(LocalDate dataVenda){
+         try {
+             double totalVenda =0;
+             String sql = "select sum(total_venda) as total from tb_vendas where data_venda=?";
+             PreparedStatement stmt = con.prepareStatement(sql);
+             stmt.setString(1,dataVenda.toString());
+             
+             ResultSet rs = stmt.executeQuery();
+             
+             if(rs.next()){
+                 totalVenda = rs.getDouble("total");
+             }
+             return totalVenda;
+         } catch (SQLException e) {
+            throw new RuntimeException();
+         }
      }
 }
