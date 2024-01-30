@@ -151,6 +151,11 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/controle de produto.png"))); // NOI18N
         jMenuItem5.setText("Consulta de Produtos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem5);
 
         jMenuBar1.add(jMenu6);
@@ -239,6 +244,15 @@ public class FrmMenu extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // consulta de produtos
+        
+        FrmProdutos telaProdutos = new FrmProdutos();
+        telaProdutos.jTabbedPane1.setSelectedIndex(1);
+        telaProdutos.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
