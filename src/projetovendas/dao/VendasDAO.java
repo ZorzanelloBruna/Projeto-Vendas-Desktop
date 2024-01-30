@@ -98,5 +98,5 @@ public class VendasDAO {
             JOptionPane.showMessageDialog(null, "Erro ao listar os dados!" + e);
             return null;
         }
-    }
+     }
 }
