@@ -184,6 +184,11 @@ public class FrmMenu extends javax.swing.JFrame {
 
         menuPosicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/posição do dia.png"))); // NOI18N
         menuPosicao.setText("Posição do dia");
+        menuPosicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPosicaoActionPerformed(evt);
+            }
+        });
         menuVendas.add(menuPosicao);
 
         menuHistoricoVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/historico de vendas.png"))); // NOI18N
@@ -288,6 +293,12 @@ public class FrmMenu extends javax.swing.JFrame {
         FrmVendas telaVendas = new FrmVendas();
         telaVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void menuPosicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPosicaoActionPerformed
+        // posição do dia
+        FrmTotalVendas telaTotalVenda = new FrmTotalVendas();
+        telaTotalVenda.setVisible(true);
+    }//GEN-LAST:event_menuPosicaoActionPerformed
 
     /**
      * @param args the command line arguments
