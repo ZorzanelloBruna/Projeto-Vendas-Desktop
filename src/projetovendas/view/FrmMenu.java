@@ -222,7 +222,9 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        // funcionarios
+        FrmFuncionarios telaFuncioanarios = new FrmFuncionarios();
+        telaFuncioanarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
